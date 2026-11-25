@@ -27,10 +27,10 @@
   </a>
   <nav class="site-nav" aria-label="Основное меню">
     <a class="nav-link" href="#features">Возможности</a>
-    <button type="button" class="theme-toggle" data-theme-toggle>
-      <span data-theme-icon aria-hidden="true">☾</span>
-      <span data-theme-label>Тёмная</span>
-    </button>
+    <div class="theme-switch" role="group" aria-label="Тема оформления">
+      <button type="button" data-theme-choice="light" aria-pressed="false">Светлая</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Тёмная</button>
+    </div>
     <a class="btn btn-primary" href="budget.html">Открыть бюджет</a>
   </nav>
 </header>
@@ -130,6 +130,30 @@
   Семейный бюджет · учёт доходов и расходов семьи
 </footer>
 
-<script src="js/theme.js"></script>
+<script>
+(function () {
+  var STORAGE_THEME = "familyBudget_theme";
+  var buttons = document.querySelectorAll("[data-theme-choice]");
+
+  function apply(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem(STORAGE_THEME, theme);
+
+    buttons.forEach(function (button) {
+      var active = button.getAttribute("data-theme-choice") === theme;
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      apply(button.getAttribute("data-theme-choice"));
+    });
+  });
+
+  var current = document.documentElement.getAttribute("data-theme");
+  apply(current === "dark" ? "dark" : "light");
+})();
+</script>
 </body>
 </html>
