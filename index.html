@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Семейный бюджет: учёт доходов и расходов, месячный лимит и резервные копии в браузере.">
+<title>Семейный бюджет</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+(function () {
+  var saved = localStorage.getItem("familyBudget_theme");
+  var theme = saved === "light" || saved === "dark"
+    ? saved
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+</script>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<header class="site-bar">
+  <a class="brand" href="index.html">
+    <span class="brand-mark" aria-hidden="true">🏠</span>
+    Семейный бюджет
+  </a>
+  <nav class="site-nav" aria-label="Основное меню">
+    <a class="nav-link" href="#features">Возможности</a>
+    <button type="button" class="theme-toggle" data-theme-toggle>
+      <span data-theme-icon aria-hidden="true">☾</span>
+      <span data-theme-label>Тёмная</span>
+    </button>
+    <a class="btn btn-primary" href="budget.html">Открыть бюджет</a>
+  </nav>
+</header>
+
+<main class="container landing">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Личные финансы без регистрации</span>
+      <h1>Считайте семейный бюджет в одном окне</h1>
+      <p>
+        Записывайте доходы и расходы, следите за остатком месяца
+        и не выходите за лимит. Все цифры остаются в этом браузере.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="budget.html">Начать учёт</a>
+        <a class="btn btn-ghost" href="#how">Как это работает</a>
+      </div>
+    </div>
+
+    <div class="preview" aria-hidden="true">
+      <div class="preview-row">
+        <span>Доход</span>
+        <strong>120 000 ₽</strong>
+      </div>
+      <div class="preview-row">
+        <span>Расходы</span>
+        <strong>74 500 ₽</strong>
+      </div>
+      <div class="preview-row">
+        <span>Остаток</span>
+        <strong>45 500 ₽</strong>
+      </div>
+      <div class="preview-row">
+        <span>Лимит месяца</span>
+        <strong>ещё 15 500 ₽</strong>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="section-title" id="features">Что уже умеет приложение</h2>
+  <section class="features">
+    <article class="feature">
+      <h3>Доходы и расходы</h3>
+      <p>Операции с категорией, датой и комментарием. Их можно изменить или удалить.</p>
+    </article>
+    <article class="feature">
+      <h3>Месячный срез</h3>
+      <p>Доход, расход, остаток и доля сбережений считаются за выбранный месяц.</p>
+    </article>
+    <article class="feature">
+      <h3>Лимит трат</h3>
+      <p>Задайте потолок расходов и смотрите, сколько ещё можно потратить.</p>
+    </article>
+    <article class="feature">
+      <h3>Структура расходов</h3>
+      <p>Круговая диаграмма показывает, на какие категории уходит месяц.</p>
+    </article>
+    <article class="feature">
+      <h3>Резервная копия</h3>
+      <p>Скачайте JSON и верните данные позже или в другом браузере.</p>
+    </article>
+    <article class="feature">
+      <h3>Светлая и тёмная тема</h3>
+      <p>Оформление запоминается и подхватывает системную тему, если выбор ещё не сделан.</p>
+    </article>
+  </section>
+
+  <h2 class="section-title" id="how">Три шага</h2>
+  <section class="steps">
+    <article class="step">
+      <span class="step-num">1</span>
+      <h3>Откройте бюджет</h3>
+      <p>Страница учёта открывается сразу, аккаунт не нужен.</p>
+    </article>
+    <article class="step">
+      <span class="step-num">2</span>
+      <h3>Добавьте операции</h3>
+      <p>Укажите тип, категорию, сумму и дату. Запись сохранится сама.</p>
+    </article>
+    <article class="step">
+      <span class="step-num">3</span>
+      <h3>Сверьте месяц</h3>
+      <p>Поставьте лимит и посмотрите остаток, диаграмму и историю.</p>
+    </article>
+  </section>
+
+  <section class="note">
+    <h2>Данные не уходят на сервер</h2>
+    <p>
+      Операции и лимиты хранятся в localStorage этого браузера.
+      Чтобы не потерять их при очистке сайта, скачайте резервную копию на странице бюджета.
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  Семейный бюджет · учёт доходов и расходов семьи
+</footer>
+
+<script src="js/theme.js"></script>
+</body>
+</html>
